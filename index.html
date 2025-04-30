@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funkcje Lua i Roblox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f3f3f3;
+            color: rgb(0, 0, 0);
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            margin: auto;
+            padding: 20px;
+            background-color: rgb(26, 26, 26);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .function-box {
+            background-color: #ffffff;
+            color: rgb(22, 22, 22);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .function-box:hover {
+            background-color: #ffffff;
+        }
+        .function-description {
+            display: none;
+            background-color: #ffffff;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        .function-box.active + .function-description {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Funkcje Lua i Roblox</h1>
+    <p>Kliknij na funkcję, aby zobaczyć jej opis.</p>
+</header>
+
+<div class="container">
+    <h2>Funkcje Lua</h2>
+
+    <div class="function-box" onclick="toggleDescription('print')">
+        <span>print()</span>
+        <span>+</span>
+    </div>
+    <div id="print" class="function-description">
+        print() -- pisze w konsoli
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('wait')">
+        <span>wait()</span>
+        <span>+</span>
+    </div>
+    <div id="wait" class="function-description">
+        wait() -- zatrzymuje skrypt na określoną liczbę sekund
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('tick')">
+        <span>tick()</span>
+        <span>+</span>
+    </div>
+    <div id="tick" class="function-description">
+        tick() -- zwraca czas od uruchomienia gry w sekundach
+    </div>
+
+    <h2>Funkcje Roblox</h2>
+
+    <div class="function-box" onclick="toggleDescription('game_service')">
+        <span>game:GetService()</span>
+        <span>+</span>
+    </div>
+    <div id="game_service" class="function-description">
+        game:GetService() -- pozyskuje usługę w grze
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('game_workspace')">
+        <span>game.Workspace</span>
+        <span>+</span>
+    </div>
+    <div id="game_workspace" class="function-description">
+        game.Workspace -- przestrzeń robocza w grze
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('game_players')">
+        <span>game.Players</span>
+        <span>+</span>
+    </div>
+    <div id="game_players" class="function-description">
+        game.Players -- zarządza graczami
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('game.Lighting')">
+        <span>game.Lighting</span>
+        <span>+</span>
+    </div>
+    <div id="game.Lighting" class="function-description">
+        game.Lighting -- zarządza oświetleniem
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('game.ServerScriptService')">
+        <span>game.ServerScriptService</span>
+        <span>+</span>
+    </div>
+    <div id="game.ServerScriptService" class="function-description">
+        game.ServerScriptService -- przechowuje skrypty serwera
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('game.ReplicatedStorage')">
+        <span>game.ReplicatedStorage</span>
+        <span>+</span>
+    </div>
+    <div id="game.ReplicatedStorage" class="function-description">
+        game.ReplicatedStorage -- przechowuje obiekty dostępne dla serwera i klienta
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('game.ClientStorage')">
+        <span>game.ClientStorage</span>
+        <span>+</span>
+    </div>
+    <div id="game.ClientStorage" class="function-description">
+        game.ClientStorage -- przechowuje dane klienta
+    </div>
+
+    <div class="function-box" onclick="toggleDescription('game.Debris')">
+        <span>game.Debris</span>
+        <span>+</span>
+    </div>
+    <div id="game.Debris" class="function-description">
+        game.Debris -- zarządza obiektami do usunięcia po czasie
+    </div>
+</div>
+</div>
+
+<script>
+    function toggleDescription(id) {
+        // Toggle aktywności funkcji
+        var functionBox = document.getElementById(id).previousElementSibling;
+        functionBox.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>   
+</p>
