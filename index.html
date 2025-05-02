@@ -262,6 +262,49 @@ end
         <p><strong>Wynik:</strong> lua</p>
       </div>
     </div>
+
+      <!-- Sekcja DataStore -->
+  <div class="section-header">
+    <h2>DataStoreService</h2>
+  </div>
+  <div class="container">
+    <div class="function-box">
+      <h2>DataStoreService</h2>
+      <button onclick="toggleInfo('datastore')">Pokaż opis i przykład</button>
+      <div id="datastore" class="description">
+        <p><strong>Opis:</strong> <code>DataStoreService</code> to usługa w Roblox, która pozwala na przechowywanie danych, które przetrwają po zakończeniu gry.</p>
+        <pre>
+-- Inicjalizacja DataStore
+local DataStoreService = game:GetService("DataStoreService")
+local playerDataStore = DataStoreService:GetDataStore("PlayerDataStore")
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sekcja Animacje -->
+  <div class="section-header">
+    <h2>Animacje Serwerowe</h2>
+  </div>
+  <div class="container">
+    <div class="function-box">
+      <h2>Animacje w Robloxie</h2>
+      <button onclick="toggleInfo('animacje')">Pokaż opis i przykład</button>
+      <div id="animacje" class="description">
+        <p><strong>Opis:</strong> Animacje w Robloxie są odtwarzane przez animatorów, które mogą być przypisane do postaci lub obiektów.</p>
+        <pre>
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://ANIMATION_ID"
+
+local humanoid = game.Workspace.Player.Character:WaitForChild("Humanoid")
+local animator = humanoid:WaitForChild("Animator")
+
+local animTrack = animator:LoadAnimation(animation)
+animTrack:Play()
+        </pre>
+      </div>
+    </div>
+  </div>
   </div>
 
   <script>
