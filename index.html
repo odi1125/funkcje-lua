@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dokumentacja Funkcji Lua</title>
+  <title>Dokumentacja Funkcji Lua i Roblox</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -45,10 +45,10 @@
       padding: 10px;
       border-radius: 4px;
       font-family: monospace;
-      white-space: pre-wrap;      /* Zawijanie tekstu */
-      word-wrap: break-word;      /* Zawijanie długich słów */
-      width: 100%;                /* Zajmowanie całej szerokości */
-      box-sizing: border-box;     /* Uwzględnia padding przy obliczaniu szerokości */
+      white-space: pre-wrap;      
+      word-wrap: break-word;
+      width: 100%;
+      box-sizing: border-box;
     }
     button {
       background-color: #4CAF50;
@@ -74,7 +74,7 @@
 </head>
 <body>
 
-  <h1>Dokumentacja Funkcji Lua</h1>
+  <h1>Dokumentacja Funkcji Lua i Roblox</h1>
 
   <!-- Sekcja Podstawowych Funkcji -->
   <div class="section-header">
@@ -116,38 +116,82 @@ print(type({}))
     </div>
   </div>
 
-  <!-- Sekcja Funkcji Matematycznych -->
+  <!-- Sekcja DataStore -->
   <div class="section-header">
-    <h2>Funkcje Matematyczne</h2>
+    <h2>DataStoreService</h2>
   </div>
   <div class="container">
     <div class="function-box">
-      <h2>math.random()</h2>
-      <button onclick="toggleInfo('random')">Pokaż opis i przykład</button>
-      <div id="random" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>math.random()</code> generuje losową liczbę.</p>
-        <pre>math.random(1, 10)</pre>
-        <p><strong>Wynik:</strong> Losowa liczba z zakresu 1-10 (np. 7)</p>
+      <h2>DataStoreService</h2>
+      <button onclick="toggleInfo('datastore')">Pokaż opis i przykład</button>
+      <div id="datastore" class="description">
+        <p><strong>Opis:</strong> <code>DataStoreService</code> to usługa w Roblox, która pozwala na przechowywanie danych, które przetrwają po zakończeniu gry.</p>
+        <pre>
+local DataStoreService = game:GetService("DataStoreService")
+local playerDataStore = DataStoreService:GetDataStore("PlayerDataStore")
+
+-- Zapis danych gracza
+local function savePlayerData(player)
+    local playerId = player.UserId
+    local success, errorMessage = pcall(function()
+        playerDataStore:SetAsync(playerId, player.Points)
+    end)
+    if success then
+        print("Dane gracza zapisane!")
+    else
+        warn("Błąd podczas zapisywania danych: " .. errorMessage)
+    end
+end
+        </pre>
       </div>
     </div>
+  </div>
 
+  <!-- Sekcja Animacji -->
+  <div class="section-header">
+    <h2>Animacje</h2>
+  </div>
+  <div class="container">
     <div class="function-box">
-      <h2>math.sin()</h2>
-      <button onclick="toggleInfo('sin')">Pokaż opis i przykład</button>
-      <div id="sin" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>math.sin()</code> oblicza sinus kąta (w radianach).</p>
-        <pre>math.sin(math.pi / 2)</pre>
-        <p><strong>Wynik:</strong> 1</p>
+      <h2>Animator</h2>
+      <button onclick="toggleInfo('animator')">Pokaż opis i przykład</button>
+      <div id="animator" class="description">
+        <p><strong>Opis:</strong> Animator pozwala na odtwarzanie animacji na postaciach. Animacje są kontrolowane przez komponent Animator w postaci Humanoid.</p>
+        <pre>
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://ANIMATION_ID"  -- Zastąp ANIMATION_ID rzeczywistym ID animacji
+
+local humanoid = game.Workspace.Player.Character:WaitForChild("Humanoid")
+local animator = humanoid:WaitForChild("Animator")
+local animTrack = animator:LoadAnimation(animation)
+
+animTrack:Play()
+        </pre>
       </div>
     </div>
+  </div>
 
+  <!-- Sekcja Tweening GUI -->
+  <div class="section-header">
+    <h2>Animacje GUI</h2>
+  </div>
+  <div class="container">
     <div class="function-box">
-      <h2>math.floor()</h2>
-      <button onclick="toggleInfo('floor')">Pokaż opis i przykład</button>
-      <div id="floor" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>math.floor()</code> zaokrągla liczbę w dół do najbliższej liczby całkowitej.</p>
-        <pre>math.floor(5.7)</pre>
-        <p><strong>Wynik:</strong> 5</p>
+      <h2>TweenService</h2>
+      <button onclick="toggleInfo('tween')">Pokaż opis i przykład</button>
+      <div id="tween" class="description">
+        <p><strong>Opis:</strong> TweenService umożliwia tworzenie animacji dla obiektów GUI, takich jak zmiana pozycji, rozmiaru, przezroczystości, kolorów i innych właściwości.</p>
+        <pre>
+local TweenService = game:GetService("TweenService")
+local frame = script.Parent -- Załóżmy, że to jest obiekt Frame
+local goalPosition = UDim2.new(0.5, -50, 0.5, -50) -- Pozycja docelowa
+
+local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local goal = {Position = goalPosition}
+local tween = TweenService:Create(frame, tweenInfo, goal)
+
+tween:Play()
+        </pre>
       </div>
     </div>
   </div>
@@ -216,144 +260,6 @@ end
         </p>
       </div>
     </div>
-  </div>
-
-  <!-- Sekcja Funkcji na Ciągach Znaków -->
-  <div class="section-header">
-    <h2>Funkcje na Ciągach Znaków</h2>
-  </div>
-  <div class="container">
-    <div class="function-box">
-      <h2>string.len()</h2>
-      <button onclick="toggleInfo('len')">Pokaż opis i przykład</button>
-      <div id="len" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>string.len()</code> zwraca długość ciągu znaków.</p>
-        <pre>string.len("Hello")</pre>
-        <p><strong>Wynik:</strong> 5</p>
-      </div>
-    </div>
-
-    <div class="function-box">
-      <h2>string.sub()</h2>
-      <button onclick="toggleInfo('sub')">Pokaż opis i przykład</button>
-      <div id="sub" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>string.sub()</code> zwraca fragment ciągu znaków.</p>
-        <pre>string.sub("Lua Programming", 1, 3)</pre>
-        <p><strong>Wynik:</strong> Lua</p>
-      </div>
-    </div>
-
-    <div class="function-box">
-      <h2>string.upper()</h2>
-      <button onclick="toggleInfo('upper')">Pokaż opis i przykład</button>
-      <div id="upper" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>string.upper()</code> konwertuje wszystkie litery ciągu na wielkie litery.</p>
-        <pre>string.upper("lua")</pre>
-        <p><strong>Wynik:</strong> LUA</p>
-      </div>
-    </div>
-
-    <div class="function-box">
-      <h2>string.lower()</h2>
-      <button onclick="toggleInfo('lower')">Pokaż opis i przykład</button>
-      <div id="lower" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>string.lower()</code> konwertuje wszystkie litery ciągu na małe litery.</p>
-        <pre>string.lower("LUA")</pre>
-        <p><strong>Wynik:</strong> lua</p>
-      </div>
-    </div>
-
-      <!-- Sekcja DataStore -->
-  <div class="section-header">
-    <h2>DataStoreService</h2>
-  </div>
-  <div class="container">
-    <div class="function-box">
-      <h2>DataStoreService</h2>
-      <button onclick="toggleInfo('datastore')">Pokaż opis i przykład</button>
-      <div id="datastore" class="description">
-        <p><strong>Opis:</strong> <code>DataStoreService</code> to usługa w Roblox, która pozwala na przechowywanie danych, które przetrwają po zakończeniu gry.</p>
-        <pre>
--- Inicjalizacja DataStore
-local DataStoreService = game:GetService("DataStoreService")
-local playerDataStore = DataStoreService:GetDataStore("PlayerDataStore")
-        </pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sekcja Animacje -->
-  <div class="section-header">
-    <h2>Animacje Serwerowe</h2>
-  </div>
-  <div class="container">
-    <div class="function-box">
-      <h2>Animacje w Robloxie</h2>
-      <button onclick="toggleInfo('animacje')">Pokaż opis i przykład</button>
-      <div id="animacje" class="description">
-        <p><strong>Opis:</strong> Animacje w Robloxie są odtwarzane przez animatorów, które mogą być przypisane do postaci lub obiektów.</p>
-        <pre>
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://ANIMATION_ID"
-
-local humanoid = game.Workspace.Player.Character:WaitForChild("Humanoid")
-local animator = humanoid:WaitForChild("Animator")
-
-local animTrack = animator:LoadAnimation(animation)
-animTrack:Play()
-        </pre>
-      </div>
-    </div>
-  </div>
-
-      <!-- Sekcja Animacji GUI -->
-  <div class="section-header">
-    <h2>Animacje GUI</h2>
-  </div>
-  <div class="container">
-    <div class="function-box">
-      <h2>TweenService</h2>
-      <button onclick="toggleInfo('tween')">Pokaż opis i przykład</button>
-      <div id="tween" class="description">
-        <p><strong>Opis:</strong> TweenService umożliwia tworzenie animacji dla obiektów GUI, takich jak zmiana pozycji, rozmiaru, przezroczystości, kolorów i innych właściwości.</p>
-        <pre>
-local TweenService = game:GetService("TweenService")
-local frame = script.Parent -- Załóżmy, że to jest obiekt Frame
-local goalPosition = UDim2.new(0.5, -50, 0.5, -50) -- Pozycja docelowa
-
-local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-local goal = {Position = goalPosition}
-local tween = TweenService:Create(frame, tweenInfo, goal)
-
-tween:Play()
-        </pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sekcja Animacji Postaci -->
-  <div class="section-header">
-    <h2>Animacje Postaci</h2>
-  </div>
-  <div class="container">
-    <div class="function-box">
-      <h2>Animator</h2>
-      <button onclick="toggleInfo('animator')">Pokaż opis i przykład</button>
-      <div id="animator" class="description">
-        <p><strong>Opis:</strong> Animator pozwala na odtwarzanie animacji na postaciach. Animacje są kontrolowane przez komponent Animator w postaci Humanoid.</p>
-        <pre>
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://ANIMATION_ID"  -- Zastąp ID animacji
-
-local humanoid = game.Workspace.Player.Character:WaitForChild("Humanoid")
-local animator = humanoid:WaitForChild("Animator")
-local animTrack = animator:LoadAnimation(animation)
-
-animTrack:Play()
-        </pre>
-      </div>
-    </div>
-  </div>
   </div>
 
   <script>
