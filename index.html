@@ -45,7 +45,7 @@
       padding: 10px;
       border-radius: 4px;
       font-family: monospace;
-      white-space: pre-wrap;      
+      white-space: pre-wrap;
       word-wrap: break-word;
       width: 100%;
       box-sizing: border-box;
@@ -78,16 +78,15 @@
 
   <!-- Sekcja Podstawowych Funkcji -->
   <div class="section-header">
-    <h2>1. Podstawowe Funkcje</h2>
+    <h2>1. Podstawowe Funkcje Lua</h2>
   </div>
   <div class="container">
-    <!-- Print, tonumber, tostring, type, pairs, ipairs, next -->
     <div class="function-box">
       <h2>print()</h2>
       <button onclick="toggleInfo('print')">Pokaż opis i przykład</button>
       <div id="print" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>print()</code> wyświetla tekst lub wartość w konsoli.</p>
-        <pre>print("Witaj, świecie!")</pre>
+        <p><strong>Opis:</strong> Wyświetla tekst lub wartość w konsoli.</p>
+        <pre>print("Hello, World!")</pre>
         <p><strong>Wynik:</strong> Witaj, świecie!</p>
       </div>
     </div>
@@ -96,7 +95,7 @@
       <h2>tonumber()</h2>
       <button onclick="toggleInfo('tonumber')">Pokaż opis i przykład</button>
       <div id="tonumber" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>tonumber()</code> konwertuje tekst na liczbę.</p>
+        <p><strong>Opis:</strong> Konwertuje tekst na liczbę.</p>
         <pre>tonumber("123")</pre>
         <p><strong>Wynik:</strong> 123</p>
       </div>
@@ -106,7 +105,7 @@
       <h2>tostring()</h2>
       <button onclick="toggleInfo('tostring')">Pokaż opis i przykład</button>
       <div id="tostring" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>tostring()</code> konwertuje wartość na tekst.</p>
+        <p><strong>Opis:</strong> Konwertuje wartość na tekst.</p>
         <pre>tostring(123)</pre>
         <p><strong>Wynik:</strong> "123"</p>
       </div>
@@ -116,7 +115,7 @@
       <h2>type()</h2>
       <button onclick="toggleInfo('type')">Pokaż opis i przykład</button>
       <div id="type" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>type()</code> zwraca typ wartości (np. `string`, `table`, `number`).</p>
+        <p><strong>Opis:</strong> Zwraca typ wartości (np. string, table, number).</p>
         <pre>
 print(type("tekst"))
 print(type(123))
@@ -125,75 +124,159 @@ print(type({}))
         <p><strong>Wynik:</strong> string, number, table</p>
       </div>
     </div>
+  </div>
 
+  <!-- Sekcja Matematycznych Funkcji -->
+  <div class="section-header">
+    <h2>2. Matematyczne Funkcje Lua</h2>
+  </div>
+  <div class="container">
     <div class="function-box">
-      <h2>pairs()</h2>
-      <button onclick="toggleInfo('pairs')">Pokaż opis i przykład</button>
-      <div id="pairs" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>pairs()</code> iteruje po parach klucz-wartość w tabeli.</p>
-        <pre>
-local t = {a = 1, b = 2, c = 3}
-for k, v in pairs(t) do
-    print(k, v)
-end
-        </pre>
-        <p><strong>Wynik:</strong> 
-          a 1<br>
-          b 2<br>
-          c 3
-        </p>
+      <h2>math.abs()</h2>
+      <button onclick="toggleInfo('math_abs')">Pokaż opis i przykład</button>
+      <div id="math_abs" class="description">
+        <p><strong>Opis:</strong> Zwraca wartość bezwzględną liczby.</p>
+        <pre>math.abs(-5)</pre>
+        <p><strong>Wynik:</strong> 5</p>
       </div>
     </div>
 
     <div class="function-box">
-      <h2>ipairs()</h2>
-      <button onclick="toggleInfo('ipairs')">Pokaż opis i przykład</button>
-      <div id="ipairs" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>ipairs()</code> iteruje po tabeli numerowanej, od pierwszego indeksu.</p>
-        <pre>
-local t = {1, 2, 3}
-for i, v in ipairs(t) do
-    print(i, v)
-end
-        </pre>
-        <p><strong>Wynik:</strong> 
-          1 1<br>
-          2 2<br>
-          3 3
-        </p>
+      <h2>math.random()</h2>
+      <button onclick="toggleInfo('math_random')">Pokaż opis i przykład</button>
+      <div id="math_random" class="description">
+        <p><strong>Opis:</strong> Generuje losową liczbę.</p>
+        <pre>math.random(1, 10)</pre>
+        <p><strong>Wynik:</strong> Losowa liczba z zakresu 1-10</p>
       </div>
     </div>
 
     <div class="function-box">
-      <h2>next()</h2>
-      <button onclick="toggleInfo('next')">Pokaż opis i przykład</button>
-      <div id="next" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>next()</code> zwraca następny klucz i wartość w tabeli.</p>
+      <h2>math.cos()</h2>
+      <button onclick="toggleInfo('math_cos')">Pokaż opis i przykład</button>
+      <div id="math_cos" class="description">
+        <p><strong>Opis:</strong> Zwraca cosinus kąta (w radianach).</p>
+        <pre>math.cos(math.pi / 2)</pre>
+        <p><strong>Wynik:</strong> 0</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sekcja Pętli i Instrukcji Warunkowych -->
+  <div class="section-header">
+    <h2>3. Pętle i Instrukcje Warunkowe Lua</h2>
+  </div>
+  <div class="container">
+    <!-- if -->
+    <div class="function-box">
+      <h2>if</h2>
+      <button onclick="toggleInfo('if')">Pokaż opis i przykład</button>
+      <div id="if" class="description">
+        <p><strong>Opis:</strong> Instrukcja warunkowa, która sprawdza, czy warunek jest prawdziwy, a jeśli tak, wykonuje blok kodu.</p>
         <pre>
-local t = {a = 1, b = 2}
-local k, v = next(t)
-print(k, v)  -- może zwrócić "a 1"
+if x > 10 then
+    print("x jest większe niż 10")
+end
         </pre>
-        <p><strong>Wynik:</strong> może zwrócić "a 1" lub inną parę.</p>
+        <p><strong>Wynik:</strong> Jeśli <code>x > 10</code>, wyświetli komunikat.</p>
+      </div>
+    </div>
+
+    <!-- else -->
+    <div class="function-box">
+      <h2>else</h2>
+      <button onclick="toggleInfo('else')">Pokaż opis i przykład</button>
+      <div id="else" class="description">
+        <p><strong>Opis:</strong> Instrukcja używana z `if` do wykonania alternatywnego bloku kodu, jeśli warunek w `if` jest fałszywy.</p>
+        <pre>
+if x > 10 then
+    print("x jest większe niż 10")
+else
+    print("x jest mniejsze lub równe 10")
+end
+        </pre>
+      </div>
+    </div>
+
+    <!-- elseif -->
+    <div class="function-box">
+      <h2>elseif</h2>
+      <button onclick="toggleInfo('elseif')">Pokaż opis i przykład</button>
+      <div id="elseif" class="description">
+        <p><strong>Opis:</strong> Używane do sprawdzenia dodatkowego warunku, jeśli poprzedni warunek w `if` był fałszywy.</p>
+        <pre>
+if x > 10 then
+    print("x jest większe niż 10")
+elseif x == 10 then
+    print("x jest równe 10")
+else
+    print("x jest mniejsze niż 10")
+end
+        </pre>
+      </div>
+    </div>
+
+    <!-- while -->
+    <div class="function-box">
+      <h2>while</h2>
+      <button onclick="toggleInfo('while')">Pokaż opis i przykład</button>
+      <div id="while" class="description">
+        <p><strong>Opis:</strong> Pętla wykonująca blok kodu dopóki warunek jest prawdziwy.</p>
+        <pre>
+local x = 0
+while x < 5 do
+    print(x)
+    x = x + 1
+end
+        </pre>
+      </div>
+    </div>
+
+    <!-- for -->
+    <div class="function-box">
+      <h2>for</h2>
+      <button onclick="toggleInfo('for')">Pokaż opis i przykład</button>
+      <div id="for" class="description">
+        <p><strong>Opis:</strong> Pętla wykonująca blok kodu określoną liczbę razy.</p>
+        <pre>
+for i = 1, 5 do
+    print(i)
+end
+        </pre>
+      </div>
+    </div>
+
+    <!-- repeat -->
+    <div class="function-box">
+      <h2>repeat</h2>
+      <button onclick="toggleInfo('repeat')">Pokaż opis i przykład</button>
+      <div id="repeat" class="description">
+        <p><strong>Opis:</strong> Pętla wykonująca blok kodu przynajmniej raz, a potem sprawdzająca warunek.</p>
+        <pre>
+local x = 0
+repeat
+    print(x)
+    x = x + 1
+until x >= 5
+        </pre>
       </div>
     </div>
   </div>
 
   <!-- Sekcja DataStore -->
   <div class="section-header">
-    <h2>2. DataStore</h2>
+    <h2>4. DataStore w Robloxie</h2>
   </div>
   <div class="container">
     <div class="function-box">
       <h2>DataStoreService</h2>
       <button onclick="toggleInfo('datastore')">Pokaż opis i przykład</button>
       <div id="datastore" class="description">
-        <p><strong>Opis:</strong> <code>DataStoreService</code> to usługa w Robloxie, która umożliwia przechowywanie danych graczy, które przetrwają po zakończeniu gry.</p>
+        <p><strong>Opis:</strong> DataStore umożliwia przechowywanie danych graczy w Robloxie, które przetrwają po zakończeniu gry.</p>
         <pre>
 local DataStoreService = game:GetService("DataStoreService")
 local playerDataStore = DataStoreService:GetDataStore("PlayerDataStore")
 
--- Zapis danych gracza
 local function savePlayerData(player)
     local playerId = player.UserId
     local success, errorMessage = pcall(function()
@@ -206,7 +289,6 @@ local function savePlayerData(player)
     end
 end
 
--- Zdarzenie, gdy gracz opuszcza grę
 game.Players.PlayerRemoving:Connect(function(player)
     savePlayerData(player)
 end)
@@ -217,14 +299,14 @@ end)
 
   <!-- Sekcja Animacji GUI -->
   <div class="section-header">
-    <h2>3. Animacje GUI</h2>
+    <h2>5. Animacje GUI w Robloxie</h2>
   </div>
   <div class="container">
     <div class="function-box">
       <h2>TweenService</h2>
       <button onclick="toggleInfo('tween')">Pokaż opis i przykład</button>
       <div id="tween" class="description">
-        <p><strong>Opis:</strong> <code>TweenService</code> pozwala na tworzenie animacji dla GUI w Robloxie (np. animowanie pozycji, rozmiaru, koloru itp.).</p>
+        <p><strong>Opis:</strong> TweenService pozwala na animowanie elementów GUI w Robloxie.</p>
         <pre>
 local TweenService = game:GetService("TweenService")
 local frame = script.Parent -- Załóżmy, że to jest obiekt Frame
@@ -240,16 +322,16 @@ tween:Play()
     </div>
   </div>
 
-  <!-- Sekcja Zarządzania Graczami -->
+  <!-- Sekcja Graczy w Robloxie -->
   <div class="section-header">
-    <h2>4. Zarządzanie Graczami</h2>
+    <h2>6. Zarządzanie Graczami w Robloxie</h2>
   </div>
   <div class="container">
     <div class="function-box">
       <h2>game.Players.PlayerAdded</h2>
       <button onclick="toggleInfo('player_added')">Pokaż opis i przykład</button>
       <div id="player_added" class="description">
-        <p><strong>Opis:</strong> <code>game.Players.PlayerAdded</code> to zdarzenie wywoływane, gdy gracz dołącza do gry.</p>
+        <p><strong>Opis:</strong> Zdarzenie uruchamiane, gdy gracz dołącza do gry.</p>
         <pre>
 game.Players.PlayerAdded:Connect(function(player)
     print(player.Name .. " dołączył do gry!")
@@ -262,10 +344,10 @@ end)
       <h2>game.Players.PlayerRemoving</h2>
       <button onclick="toggleInfo('player_removing')">Pokaż opis i przykład</button>
       <div id="player_removing" class="description">
-        <p><strong>Opis:</strong> <code>game.Players.PlayerRemoving</code> to zdarzenie wywoływane, gdy gracz opuszcza grę.</p>
+        <p><strong>Opis:</strong> Zdarzenie uruchamiane, gdy gracz opuszcza grę.</p>
         <pre>
 game.Players.PlayerRemoving:Connect(function(player)
-    print(player.Name .. " opuścił grę.")
+    print(player.Name .. " opuścił grę!")
 end)
         </pre>
       </div>
