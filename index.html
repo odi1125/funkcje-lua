@@ -305,6 +305,55 @@ animTrack:Play()
       </div>
     </div>
   </div>
+
+      <!-- Sekcja Animacji GUI -->
+  <div class="section-header">
+    <h2>Animacje GUI</h2>
+  </div>
+  <div class="container">
+    <div class="function-box">
+      <h2>TweenService</h2>
+      <button onclick="toggleInfo('tween')">Pokaż opis i przykład</button>
+      <div id="tween" class="description">
+        <p><strong>Opis:</strong> TweenService umożliwia tworzenie animacji dla obiektów GUI, takich jak zmiana pozycji, rozmiaru, przezroczystości, kolorów i innych właściwości.</p>
+        <pre>
+local TweenService = game:GetService("TweenService")
+local frame = script.Parent -- Załóżmy, że to jest obiekt Frame
+local goalPosition = UDim2.new(0.5, -50, 0.5, -50) -- Pozycja docelowa
+
+local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local goal = {Position = goalPosition}
+local tween = TweenService:Create(frame, tweenInfo, goal)
+
+tween:Play()
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sekcja Animacji Postaci -->
+  <div class="section-header">
+    <h2>Animacje Postaci</h2>
+  </div>
+  <div class="container">
+    <div class="function-box">
+      <h2>Animator</h2>
+      <button onclick="toggleInfo('animator')">Pokaż opis i przykład</button>
+      <div id="animator" class="description">
+        <p><strong>Opis:</strong> Animator pozwala na odtwarzanie animacji na postaciach. Animacje są kontrolowane przez komponent Animator w postaci Humanoid.</p>
+        <pre>
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://ANIMATION_ID"  -- Zastąp ID animacji
+
+local humanoid = game.Workspace.Player.Character:WaitForChild("Humanoid")
+local animator = humanoid:WaitForChild("Animator")
+local animTrack = animator:LoadAnimation(animation)
+
+animTrack:Play()
+        </pre>
+      </div>
+    </div>
+  </div>
   </div>
 
   <script>
