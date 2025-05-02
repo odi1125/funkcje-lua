@@ -81,6 +81,7 @@
     <h2>1. Podstawowe Funkcje</h2>
   </div>
   <div class="container">
+    <!-- Print, tonumber, tostring, type, pairs, ipairs, next -->
     <div class="function-box">
       <h2>print()</h2>
       <button onclick="toggleInfo('print')">Pokaż opis i przykład</button>
@@ -178,104 +179,95 @@ print(k, v)  -- może zwrócić "a 1"
     </div>
   </div>
 
-  <!-- Sekcja Funkcji Matematycznych -->
+  <!-- Sekcja DataStore -->
   <div class="section-header">
-    <h2>2. Matematyczne Funkcje</h2>
+    <h2>2. DataStore</h2>
   </div>
   <div class="container">
     <div class="function-box">
-      <h2>math.abs()</h2>
-      <button onclick="toggleInfo('math_abs')">Pokaż opis i przykład</button>
-      <div id="math_abs" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>math.abs()</code> zwraca wartość bezwzględną liczby.</p>
-        <pre>math.abs(-5)</pre>
-        <p><strong>Wynik:</strong> 5</p>
-      </div>
-    </div>
+      <h2>DataStoreService</h2>
+      <button onclick="toggleInfo('datastore')">Pokaż opis i przykład</button>
+      <div id="datastore" class="description">
+        <p><strong>Opis:</strong> <code>DataStoreService</code> to usługa w Robloxie, która umożliwia przechowywanie danych graczy, które przetrwają po zakończeniu gry.</p>
+        <pre>
+local DataStoreService = game:GetService("DataStoreService")
+local playerDataStore = DataStoreService:GetDataStore("PlayerDataStore")
 
-    <div class="function-box">
-      <h2>math.cos()</h2>
-      <button onclick="toggleInfo('math_cos')">Pokaż opis i przykład</button>
-      <div id="math_cos" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>math.cos()</code> oblicza cosinus kąta (w radianach).</p>
-        <pre>math.cos(math.pi / 2)</pre>
-        <p><strong>Wynik:</strong> 0</p>
-      </div>
-    </div>
+-- Zapis danych gracza
+local function savePlayerData(player)
+    local playerId = player.UserId
+    local success, errorMessage = pcall(function()
+        playerDataStore:SetAsync(playerId, player.Points)
+    end)
+    if success then
+        print("Dane gracza zapisane!")
+    else
+        warn("Błąd podczas zapisywania danych: " .. errorMessage)
+    end
+end
 
-    <div class="function-box">
-      <h2>math.random()</h2>
-      <button onclick="toggleInfo('math_random')">Pokaż opis i przykład</button>
-      <div id="math_random" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>math.random()</code> generuje losową liczbę.</p>
-        <pre>math.random(1, 10)</pre>
-        <p><strong>Wynik:</strong> Losowa liczba z zakresu 1-10</p>
+-- Zdarzenie, gdy gracz opuszcza grę
+game.Players.PlayerRemoving:Connect(function(player)
+    savePlayerData(player)
+end)
+        </pre>
       </div>
     </div>
   </div>
 
-  <!-- Sekcja Funkcji na Tabelach -->
+  <!-- Sekcja Animacji GUI -->
   <div class="section-header">
-    <h2>3. Funkcje Tabel</h2>
+    <h2>3. Animacje GUI</h2>
   </div>
   <div class="container">
     <div class="function-box">
-      <h2>table.insert()</h2>
-      <button onclick="toggleInfo('table_insert')">Pokaż opis i przykład</button>
-      <div id="table_insert" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>table.insert()</code> wstawia element do tabeli.</p>
+      <h2>TweenService</h2>
+      <button onclick="toggleInfo('tween')">Pokaż opis i przykład</button>
+      <div id="tween" class="description">
+        <p><strong>Opis:</strong> <code>TweenService</code> pozwala na tworzenie animacji dla GUI w Robloxie (np. animowanie pozycji, rozmiaru, koloru itp.).</p>
         <pre>
-local tab = {1, 2, 3}
-table.insert(tab, 4)
-for i, v in ipairs(tab) do
-    print(i, v)
-end
+local TweenService = game:GetService("TweenService")
+local frame = script.Parent -- Załóżmy, że to jest obiekt Frame
+local goalPosition = UDim2.new(0.5, -50, 0.5, -50) -- Pozycja docelowa
+
+local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local goal = {Position = goalPosition}
+local tween = TweenService:Create(frame, tweenInfo, goal)
+
+tween:Play()
         </pre>
-        <p><strong>Wynik:</strong> 
-          1 1<br>
-          2 2<br>
-          3 3<br>
-          4 4
-        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sekcja Zarządzania Graczami -->
+  <div class="section-header">
+    <h2>4. Zarządzanie Graczami</h2>
+  </div>
+  <div class="container">
+    <div class="function-box">
+      <h2>game.Players.PlayerAdded</h2>
+      <button onclick="toggleInfo('player_added')">Pokaż opis i przykład</button>
+      <div id="player_added" class="description">
+        <p><strong>Opis:</strong> <code>game.Players.PlayerAdded</code> to zdarzenie wywoływane, gdy gracz dołącza do gry.</p>
+        <pre>
+game.Players.PlayerAdded:Connect(function(player)
+    print(player.Name .. " dołączył do gry!")
+end)
+        </pre>
       </div>
     </div>
 
     <div class="function-box">
-      <h2>table.remove()</h2>
-      <button onclick="toggleInfo('table_remove')">Pokaż opis i przykład</button>
-      <div id="table_remove" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>table.remove()</code> usuwa element z tabeli.</p>
+      <h2>game.Players.PlayerRemoving</h2>
+      <button onclick="toggleInfo('player_removing')">Pokaż opis i przykład</button>
+      <div id="player_removing" class="description">
+        <p><strong>Opis:</strong> <code>game.Players.PlayerRemoving</code> to zdarzenie wywoływane, gdy gracz opuszcza grę.</p>
         <pre>
-local tab = {1, 2, 3}
-table.remove(tab, 2)
-for i, v in ipairs(tab) do
-    print(i, v)
-end
+game.Players.PlayerRemoving:Connect(function(player)
+    print(player.Name .. " opuścił grę.")
+end)
         </pre>
-        <p><strong>Wynik:</strong> 
-          1 1<br>
-          3 3
-        </p>
-      </div>
-    </div>
-
-    <div class="function-box">
-      <h2>table.sort()</h2>
-      <button onclick="toggleInfo('table_sort')">Pokaż opis i przykład</button>
-      <div id="table_sort" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>table.sort()</code> sortuje tabelę.</p>
-        <pre>
-local tab = {3, 1, 2}
-table.sort(tab)
-for i, v in ipairs(tab) do
-    print(i, v)
-end
-        </pre>
-        <p><strong>Wynik:</strong> 
-          1 1<br>
-          2 2<br>
-          3 3
-        </p>
       </div>
     </div>
   </div>
