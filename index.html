@@ -78,7 +78,7 @@
 
   <!-- Sekcja Podstawowych Funkcji -->
   <div class="section-header">
-    <h2>Podstawowe Funkcje</h2>
+    <h2>1. Podstawowe Funkcje</h2>
   </div>
   <div class="container">
     <div class="function-box">
@@ -102,10 +102,20 @@
     </div>
 
     <div class="function-box">
+      <h2>tostring()</h2>
+      <button onclick="toggleInfo('tostring')">Pokaż opis i przykład</button>
+      <div id="tostring" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>tostring()</code> konwertuje wartość na tekst.</p>
+        <pre>tostring(123)</pre>
+        <p><strong>Wynik:</strong> "123"</p>
+      </div>
+    </div>
+
+    <div class="function-box">
       <h2>type()</h2>
       <button onclick="toggleInfo('type')">Pokaż opis i przykład</button>
       <div id="type" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>type()</code> zwraca typ obiektu (np. string, table, number).</p>
+        <p><strong>Opis:</strong> Funkcja <code>type()</code> zwraca typ wartości (np. `string`, `table`, `number`).</p>
         <pre>
 print(type("tekst"))
 print(type(123))
@@ -114,103 +124,111 @@ print(type({}))
         <p><strong>Wynik:</strong> string, number, table</p>
       </div>
     </div>
-  </div>
 
-  <!-- Sekcja DataStore -->
-  <div class="section-header">
-    <h2>DataStoreService</h2>
-  </div>
-  <div class="container">
     <div class="function-box">
-      <h2>DataStoreService</h2>
-      <button onclick="toggleInfo('datastore')">Pokaż opis i przykład</button>
-      <div id="datastore" class="description">
-        <p><strong>Opis:</strong> <code>DataStoreService</code> to usługa w Roblox, która pozwala na przechowywanie danych, które przetrwają po zakończeniu gry.</p>
+      <h2>pairs()</h2>
+      <button onclick="toggleInfo('pairs')">Pokaż opis i przykład</button>
+      <div id="pairs" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>pairs()</code> iteruje po parach klucz-wartość w tabeli.</p>
         <pre>
-local DataStoreService = game:GetService("DataStoreService")
-local playerDataStore = DataStoreService:GetDataStore("PlayerDataStore")
-
--- Zapis danych gracza
-local function savePlayerData(player)
-    local playerId = player.UserId
-    local success, errorMessage = pcall(function()
-        playerDataStore:SetAsync(playerId, player.Points)
-    end)
-    if success then
-        print("Dane gracza zapisane!")
-    else
-        warn("Błąd podczas zapisywania danych: " .. errorMessage)
-    end
+local t = {a = 1, b = 2, c = 3}
+for k, v in pairs(t) do
+    print(k, v)
 end
         </pre>
+        <p><strong>Wynik:</strong> 
+          a 1<br>
+          b 2<br>
+          c 3
+        </p>
+      </div>
+    </div>
+
+    <div class="function-box">
+      <h2>ipairs()</h2>
+      <button onclick="toggleInfo('ipairs')">Pokaż opis i przykład</button>
+      <div id="ipairs" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>ipairs()</code> iteruje po tabeli numerowanej, od pierwszego indeksu.</p>
+        <pre>
+local t = {1, 2, 3}
+for i, v in ipairs(t) do
+    print(i, v)
+end
+        </pre>
+        <p><strong>Wynik:</strong> 
+          1 1<br>
+          2 2<br>
+          3 3
+        </p>
+      </div>
+    </div>
+
+    <div class="function-box">
+      <h2>next()</h2>
+      <button onclick="toggleInfo('next')">Pokaż opis i przykład</button>
+      <div id="next" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>next()</code> zwraca następny klucz i wartość w tabeli.</p>
+        <pre>
+local t = {a = 1, b = 2}
+local k, v = next(t)
+print(k, v)  -- może zwrócić "a 1"
+        </pre>
+        <p><strong>Wynik:</strong> może zwrócić "a 1" lub inną parę.</p>
       </div>
     </div>
   </div>
 
-  <!-- Sekcja Animacji -->
+  <!-- Sekcja Funkcji Matematycznych -->
   <div class="section-header">
-    <h2>Animacje</h2>
+    <h2>2. Matematyczne Funkcje</h2>
   </div>
   <div class="container">
     <div class="function-box">
-      <h2>Animator</h2>
-      <button onclick="toggleInfo('animator')">Pokaż opis i przykład</button>
-      <div id="animator" class="description">
-        <p><strong>Opis:</strong> Animator pozwala na odtwarzanie animacji na postaciach. Animacje są kontrolowane przez komponent Animator w postaci Humanoid.</p>
-        <pre>
-local animation = Instance.new("Animation")
-animation.AnimationId = "rbxassetid://ANIMATION_ID"  -- Zastąp ANIMATION_ID rzeczywistym ID animacji
-
-local humanoid = game.Workspace.Player.Character:WaitForChild("Humanoid")
-local animator = humanoid:WaitForChild("Animator")
-local animTrack = animator:LoadAnimation(animation)
-
-animTrack:Play()
-        </pre>
+      <h2>math.abs()</h2>
+      <button onclick="toggleInfo('math_abs')">Pokaż opis i przykład</button>
+      <div id="math_abs" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>math.abs()</code> zwraca wartość bezwzględną liczby.</p>
+        <pre>math.abs(-5)</pre>
+        <p><strong>Wynik:</strong> 5</p>
       </div>
     </div>
-  </div>
 
-  <!-- Sekcja Tweening GUI -->
-  <div class="section-header">
-    <h2>Animacje GUI</h2>
-  </div>
-  <div class="container">
     <div class="function-box">
-      <h2>TweenService</h2>
-      <button onclick="toggleInfo('tween')">Pokaż opis i przykład</button>
-      <div id="tween" class="description">
-        <p><strong>Opis:</strong> TweenService umożliwia tworzenie animacji dla obiektów GUI, takich jak zmiana pozycji, rozmiaru, przezroczystości, kolorów i innych właściwości.</p>
-        <pre>
-local TweenService = game:GetService("TweenService")
-local frame = script.Parent -- Załóżmy, że to jest obiekt Frame
-local goalPosition = UDim2.new(0.5, -50, 0.5, -50) -- Pozycja docelowa
+      <h2>math.cos()</h2>
+      <button onclick="toggleInfo('math_cos')">Pokaż opis i przykład</button>
+      <div id="math_cos" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>math.cos()</code> oblicza cosinus kąta (w radianach).</p>
+        <pre>math.cos(math.pi / 2)</pre>
+        <p><strong>Wynik:</strong> 0</p>
+      </div>
+    </div>
 
-local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-local goal = {Position = goalPosition}
-local tween = TweenService:Create(frame, tweenInfo, goal)
-
-tween:Play()
-        </pre>
+    <div class="function-box">
+      <h2>math.random()</h2>
+      <button onclick="toggleInfo('math_random')">Pokaż opis i przykład</button>
+      <div id="math_random" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>math.random()</code> generuje losową liczbę.</p>
+        <pre>math.random(1, 10)</pre>
+        <p><strong>Wynik:</strong> Losowa liczba z zakresu 1-10</p>
       </div>
     </div>
   </div>
 
   <!-- Sekcja Funkcji na Tabelach -->
   <div class="section-header">
-    <h2>Funkcje na Tabelach</h2>
+    <h2>3. Funkcje Tabel</h2>
   </div>
   <div class="container">
     <div class="function-box">
       <h2>table.insert()</h2>
-      <button onclick="toggleInfo('insert')">Pokaż opis i przykład</button>
-      <div id="insert" class="description">
-        <p><strong>Opis:</strong> Funkcja <code>table.insert()</code> wstawia element do tabeli na określoną pozycję.</p>
+      <button onclick="toggleInfo('table_insert')">Pokaż opis i przykład</button>
+      <div id="table_insert" class="description">
+        <p><strong>Opis:</strong> Funkcja <code>table.insert()</code> wstawia element do tabeli.</p>
         <pre>
 local tab = {1, 2, 3}
 table.insert(tab, 4)
 for i, v in ipairs(tab) do
-  print(i, v)
+    print(i, v)
 end
         </pre>
         <p><strong>Wynik:</strong> 
@@ -224,14 +242,14 @@ end
 
     <div class="function-box">
       <h2>table.remove()</h2>
-      <button onclick="toggleInfo('remove')">Pokaż opis i przykład</button>
-      <div id="remove" class="description">
+      <button onclick="toggleInfo('table_remove')">Pokaż opis i przykład</button>
+      <div id="table_remove" class="description">
         <p><strong>Opis:</strong> Funkcja <code>table.remove()</code> usuwa element z tabeli.</p>
         <pre>
 local tab = {1, 2, 3}
 table.remove(tab, 2)
 for i, v in ipairs(tab) do
-  print(i, v)
+    print(i, v)
 end
         </pre>
         <p><strong>Wynik:</strong> 
@@ -243,14 +261,14 @@ end
 
     <div class="function-box">
       <h2>table.sort()</h2>
-      <button onclick="toggleInfo('sort')">Pokaż opis i przykład</button>
-      <div id="sort" class="description">
+      <button onclick="toggleInfo('table_sort')">Pokaż opis i przykład</button>
+      <div id="table_sort" class="description">
         <p><strong>Opis:</strong> Funkcja <code>table.sort()</code> sortuje tabelę.</p>
         <pre>
 local tab = {3, 1, 2}
 table.sort(tab)
 for i, v in ipairs(tab) do
-  print(i, v)
+    print(i, v)
 end
         </pre>
         <p><strong>Wynik:</strong> 
